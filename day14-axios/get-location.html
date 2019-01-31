@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Location</title>
+    </head>
+    <body>
+        <button id="btn">CLICK TO GET LOCATION</button>
+        <p id="ltd"></p>
+        <p id="lgd"></p>
+        <script>
+            const btnHandle=document.getElementById('btn')
+            const ltdHandle=document.getElementById('ltd')
+            const lgdHandle=document.getElementById('lgd')
+            let lgd,ltd,data
+            
+            btnHandle.addEventListener('click',function(){
+                
+                navigator.geolocation.getCurrentPosition(function(position){
+                ltd = position.coords.latitude 
+                lgd = position.coords.longitude 
+                ltdHandle.textContent = `Latitude ==> ${ltd}`
+                lgdHandle.textContent = `Longitude ==> ${lgd}`    
+                getTemperature(ltd,lgd)
+            })
+            })
+
+            function getTemperature(lat,lng){
+                const axios = require('axios')
+                let url=`https://api.darksky.net/forecast/0d4df65061a02f6563402979f2bdf378/${lat},${lng}`
+
+            axios.get(url).then(function(response){
+             let result = response.data
+             let celsius = (`${result.currently.temperature}` - 32) * 5/9
+            console.log(`Currently the temperature is ${celsius} degress`)
+            })
+           }
+            
+        </script>
+    </body>
+</html>
