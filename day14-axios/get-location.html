@@ -26,7 +26,7 @@
 
             function getTemperature(lat,lng){
                 const axios = require('axios')
-                let url=`https://api.darksky.net/forecast/0d4df65061a02f6563402979f2bdf378/${lat},${lng}`
+                let url=`https://api.darksky.net/forecast/key/${lat},${lng}`
 
             axios.get(url).then(function(response){
              let result = response.data
