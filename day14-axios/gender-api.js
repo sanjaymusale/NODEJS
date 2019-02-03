@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 let name = 'sanjay'
-let url = `http://gender-api.com/get?name=${name}&key=pRPLCejozFwCHFbVCR`
+let url = `http://gender-api.com/get?name=${name}&key=`
 
 axios.get(url).then(function(response){
     let gen = response.data
